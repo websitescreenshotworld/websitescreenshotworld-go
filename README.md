@@ -305,6 +305,33 @@ capture, err := client.InstantSnap.Capture(ctx, opts)
 
 For `CaptureFile`, the capture timeout covers reading the body too, until you close it.
 
+## Render links
+
+A render link is a signed URL that is itself a screenshot, for an `<img>` tag, an email or a social preview.
+`wsw.RenderLink` makes one locally - nothing is sent and no client is needed - from the key's render secret (shown
+on the dashboard's API Keys page once render links are on for the key) and its 12-character prefix:
+
+```go
+src, err := wsw.RenderLink(wsw.RenderLinkOptions{
+	RenderSecret: os.Getenv("WSW_RENDER_SECRET"),
+	KeyPrefix:    "0123456789ab",
+	URL:          "https://example.com",
+	Format:       wsw.FormatWebP,
+	Width:        wsw.Int(1280),
+	Height:       wsw.Int(720),
+	ThumbWidth:   wsw.Int(400),
+	TTLSeconds:   wsw.Int(86400), // serve the same capture for a day
+})
+if err != nil {
+	log.Fatal(err)
+}
+// <img src="{{ src }}" alt="example.com">
+```
+
+A view of the link that is not cached makes one capture from your plan; cached views are free. Keep the render
+secret on your server: anyone who has it can make links that use your captures. Render links are on the Pro,
+Business and Business Plus plans.
+
 ## Webhooks
 
 Each delivery is a `POST` whose `X-WSW-Signature` header signs the body. `wsw.VerifyWebhook` checks the
