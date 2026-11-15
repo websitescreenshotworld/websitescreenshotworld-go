@@ -69,6 +69,10 @@ Only `URL` is required. An option you leave unset is not sent, and the API uses 
 `Headers` and `Cookies` names are sent exactly as you give them. `client.InstantSnap.Catalog(ctx)` lists the
 devices `EmulatedDevice` accepts and the countries `Proxy.Country` accepts.
 
+`client.InstantSnap.Account(ctx)` answers whose key the client holds (its name and prefix, and the email of the
+member who created it), without the key itself and without spending a capture. `client.AutoSchedule.Account(ctx)`
+does the same for the Auto Schedule key.
+
 ## Getting the file in the response
 
 `CaptureFile` answers with the file itself (up to 64 MB) instead of a link. The body is a stream: read it once

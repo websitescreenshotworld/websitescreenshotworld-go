@@ -178,6 +178,10 @@ func runFixtureCall(t *testing.T, client *wsw.Client, fx *fixture) (map[string]a
 		result, err = client.InstantSnap.Defaults(ctx)
 	case "instant_snap.catalog":
 		result, err = client.InstantSnap.Catalog(ctx)
+	case "instant_snap.account":
+		result, err = client.InstantSnap.Account(ctx)
+	case "auto_schedule.account":
+		result, err = client.AutoSchedule.Account(ctx)
 	case "auto_schedule.trigger_now":
 		result, err = client.AutoSchedule.TriggerNow(ctx, fx.Call.WebPageID)
 	default:
