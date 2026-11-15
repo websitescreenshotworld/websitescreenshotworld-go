@@ -5,7 +5,10 @@ import "time"
 // Capture is an Instant Snap capture as the API describes it. Fields the API sends as null
 // hold their zero value.
 type Capture struct {
-	ID            string        `json:"id"`
+	ID string `json:"id"`
+	// URL is the page the capture was asked for; FinalURL says where the browser ended up.
+	// Sent from API 1.3.0; empty only from an older server.
+	URL           string        `json:"url"`
 	Status        CaptureStatus `json:"status"`
 	ResponseType  ResponseType  `json:"response_type"`
 	MediaCategory MediaCategory `json:"media_category"`

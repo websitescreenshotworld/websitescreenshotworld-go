@@ -135,9 +135,13 @@ var kindByCode = map[string]ErrorKind{
 	"no_trigger_allowance":  KindPlanLimit,
 	"forbidden":             KindPlanLimit,
 
+	"webhook_endpoint_limit_reached": KindPlanLimit,
+
 	"capture_not_found":  KindNotFound,
 	"web_page_not_found": KindNotFound,
 	"not_found":          KindNotFound,
+
+	"webhook_endpoint_not_found": KindNotFound,
 
 	"rate_limited": KindRateLimit,
 	"queue_full":   KindRateLimit,
